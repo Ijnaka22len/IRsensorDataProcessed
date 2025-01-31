@@ -1,0 +1,61 @@
+# Silicon Labs Project Configuration Tools: slcp, v0, Component selection file.
+project_name: IRsensorDataProcessed
+label: IRsensorDataProcessed
+description: |
+  This example project shows an example for Sparkfun IR Array MLX90640 board driver integration.
+category: Example|Platform
+filter:
+- name: Device Type
+  value: [SoC]
+- name: MCU
+  value: [32-bit MCU]
+- name: Project Difficulty
+  value: [Beginner]
+package: platform
+quality: evaluation
+readme:
+- {path: README.md}
+- {path: README.md}
+source:
+- {path: app.c}
+- {path: main.c}
+include:
+- path: .
+  file_list:
+  - {path: app.h}
+sdk: {id: gecko_sdk, version: 4.4.3}
+toolchain_settings:
+- {value: -u _printf_float, option: gcc_linker_option}
+component:
+- {from: third_party_hw_drivers, id: sparkfun_ir_array}
+- {id: EFR32MG24B310F1536IM48}
+- {id: app_assert}
+- {id: app_log}
+- {id: brd2601b}
+- {id: device_init}
+- instance: [qwiic]
+  id: i2cspm
+- instance: [vcom]
+  id: iostream_usart
+- {id: sl_system}
+- {id: sleeptimer}
+other_file:
+- {path: image/connection.png}
+- {path: image/create_example.png}
+- {path: image/init_workflow.png}
+- {path: image/memory_config.png}
+- {path: image/workflow.png}
+- {path: image/float.png}
+- {path: image/demo.gif}
+- {path: image/image_generator.py}
+define:
+- {name: DEBUG_EFM}
+configuration:
+- {name: SL_STACK_SIZE, value: '10240'}
+- {name: SL_HEAP_SIZE, value: '6144'}
+ui_hints:
+  highlight:
+  - {path: README.md, focus: true}
+sdk_extension:
+- {id: third_party_hw_drivers, version: 4.0.0}
+
