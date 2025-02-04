@@ -21,7 +21,7 @@ static sl_i2c_instance_t i2c_instance = I2C_INSTANCE_USED;
 #define app_printf(...) app_log(__VA_ARGS__)
 #endif
 
-#define TIMER_INTERVAL_MS 250  // Interval for timer synchronization
+#define TIMER_INTERVAL_MS 30  // Interval for timer synchronization
 #define RUN_TIME_MS 5000       // Total run time (5 seconds)
 
 int iteration_count = 0;  // Counts timer executions
@@ -60,7 +60,7 @@ void app_init(void)
     app_assert_status(sc);
 
     sc = sl_sleeptimer_start_periodic_timer_ms(&app_timer_handle,
-                                               250,
+                                               TIMER_INTERVAL_MS,
                                                app_timer_cb,
                                                (void *) NULL,
                                                0,
@@ -94,11 +94,12 @@ static void app_timer_cb(sl_sleeptimer_timer_handle_t *handle, void *data)
   (void) handle;
   (void) data;
 
+  app_timer_expire = true;
 
-  if (iteration_count < MAX_ITERATIONS) {
+  /*if (iteration_count < MAX_ITERATIONS) {
       app_timer_expire = true;
       iteration_count++;
   } else {
       app_timer_expire = false;
-  }
+  }*/
 }

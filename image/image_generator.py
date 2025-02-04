@@ -9,7 +9,7 @@ if __name__ == '__main__':
     temps = []
 
     # Replace COM19 with the actual COM port your device is located on
-    ser = serial.Serial("COM19", 9600)
+    ser = serial.Serial("COM6", 115200)
 
     data = np.mat(0, dtype=float)
 
